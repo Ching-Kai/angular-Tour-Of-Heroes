@@ -1,16 +1,8 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
-    <!--[class.selected]:如果當前行的英雄和 selectedHero 相同，Angular 就會新增 CSS 類 selected，否則就會移除它。-->
-    <button [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
-      <span class="badge">{{hero.id}}</span>
-      <span class="name">{{hero.name}}</span>
-    </button>
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
   </li>
 </ul>
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
-<!--[hero]="selectedHero" 是 Angular 的屬性繫結語法。
-
-這是一種單向資料繫結。從 HeroesComponent 的 selectedHero 屬性繫結到目標元素的 hero 屬性，並對映到了 HeroDetailComponent 的 hero 屬性。
-
-現在，當用戶在列表中點選某個英雄時，selectedHero 就改變了。當 selectedHero 改變時，屬性繫結會修改 HeroDetailComponent 的 hero 屬性，HeroDetailComponent 就會顯示這個新的英雄。-->
