@@ -1,0 +1,9 @@
+<h2>{{hero.name | uppercase}} Details</h2>
+<div><span>id: </span>{{hero.id}}</div>
+<div>
+  <label for="name">Hero name: </label>
+  <!--[(ngModel)] 是 Angular 的雙向資料繫結語法。
+
+這裡把 hero.name 屬性繫結到了 HTML 的 textbox 元素上-->
+  <input id="name" [(ngModel)]="hero.name" placeholder="name">
+</div>
