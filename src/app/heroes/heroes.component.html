@@ -1,9 +1,19 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div>
-  <label for="name">Hero name: </label>
-  <!--[(ngModel)] 是 Angular 的雙向資料繫結語法。
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <!--[class.selected]:如果當前行的英雄和 selectedHero 相同，Angular 就會新增 CSS 類 selected，否則就會移除它。-->
+    <button [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name}}</span>
+    </button>
+  </li>
+</ul>
 
-這裡把 hero.name 屬性繫結到了 HTML 的 textbox 元素上-->
-  <input id="name" [(ngModel)]="hero.name" placeholder="name">
+<div *ngIf="selectedHero">
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div>id: {{selectedHero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
 </div>
