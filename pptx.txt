@@ -1,0 +1,32 @@
+//pptx 筆記
+
+public  void pptRead() {
+        try {
+            FileInputStream fis = new FileInputStream("Lecture1.pptx");
+            XMLSlideShow ppt = new XMLSlideShow(fis);
+
+            // 获取幻灯片列表
+            List<XSLFSlide> slides = ppt.getSlides();
+
+            for (int i = 0; i < slides.size(); i++) {
+                XSLFSlide slide = slides.get(i);
+                System.out.println("Slide #" + (i + 1));
+
+                // 读取幻灯片文本内容
+                String slideText = "";
+                for (XSLFTextShape shape : slide.getPlaceholders()) {
+                    if (shape != null) {
+                        slideText += shape.getText() + "\n";
+                    }
+                }
+                System.out.println("Slide Content:\n" + slideText);
+
+                // 在这里进行幻灯片切换的逻辑，例如等待一段时间或响应用户输入
+                // 你可以使用定时器或事件监听器来实现幻灯片切换的交互
+            }
+
+            ppt.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
